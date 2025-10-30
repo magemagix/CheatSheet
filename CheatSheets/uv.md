@@ -632,3 +632,126 @@ You can totally tweak the versions in your **pyproject.toml** manually—whether
 And that’s it! 🎉 Whether you’re upgrading, downgrading, or just keeping everything in sync, this is your go-to guide for managing dependencies like a pro!
 
 ---
+
+
+## Run Python🐍, Scripts, and Jupyter 🚀
+
+Introduction
+
+
+Accessing Python in your environment is as easy as pie—two simple ways to get started!
+
+#### 1️⃣ The Easy Way: Just Run Python with uv!
+
+No fuss, no muss. Just type:
+
+```bash
+uv run python
+```
+
+#### 2️⃣ The Classic Way: Activate Your Environment and Run Python
+
+Or, if you like the good ol' activation method, you can always go for:
+
+```bash
+source .venv/bin/activate && python
+```
+
+#### Run a Script? Easy Peasy 🍋
+
+Same deal as above:
+
+```bash 
+uv run my_script.py
+```
+or, if you prefer to activate your environment first:
+
+```bash
+source .venv/bin/activate && python my_script.py
+```
+
+Of course, the first method is quicker, but hey—it's all about `choice` and what feels best for you! 😎
+
+
+#### 📚 My Lovely Jupyter (Lab or Not!) 💻
+
+So, you're a Jupyter fan, huh? Whether you love the classic Jupyter Notebook or you're all about that Jupyter Lab life, I've got you covered! 😁
+
+
+Let's start with the easy method! To install and launch Jupyter Lab, just one line:
+
+```bash
+uvx jupyter lab
+```
+Boom! You're ready to go. 🔥
+
+#### Want a Specific Python Version? No Problem! 🎯 
+
+If you're feeling fancy and want to run Jupyter Lab with a specific version of Python (like 3.14), just do:
+
+```bash
+uvx --python 3.14 jupyter lab
+```
+
+Easy, right? 🙌
+
+### Installing Packages Inside Jupyter 🛠️ 
+
+Remember how we install packages in a notebook? Well, you can do the same thing here! 💡
+
+```bash
+uv pip install pandas
+```
+Simple, right? ✨
+
+### Installing Jupyter Notebook with Widgets & Autocomplete 🧑‍💻
+
+Okay, now let's talk about Jupyter Notebook with some extra goodies, like widgets and autocomplete support. It's super easy!
+
+Here’s my secret recipe for Jupyter—easy, effective, and just a little bit magical! ✨
+
+```bash
+uv add notebook==6.1.5 && uv add  jupyter_contrib_nbextensions && uv run jupyter contrib nbextension install --user  && uv run jupyter nbextension enable varInspector/main && uv run jupyter nbextension enable spellchecker/main  && uv run jupyter nbextension enable codefolding/main 
+```
+I know, it's a lot, but don't worry—this will get your environment all set up with the cool features! 😎
+
+#### Verify Installation in the pyproject.toml File 🧾
+
+To make sure everything's set up right, check your `pyproject.toml`:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>                             
+[project]
+name = "proj"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter-contrib-nbextensions>=0.7.0",
+    "notebook==6.1.5",
+]
+</code>
+</pre>
+
+### 🏃‍♂️ Running Jupyter Notebook
+
+Once everything is installed, you can launch your Jupyter Notebook like a pro:
+
+
+```bash
+jupyter notebook --ip='*' --NotebookApp.token='' --NotebookApp.password=''
+```
+Note: I added `--NotebookApp.token=''` and `--NotebookApp.password=''` because, well, Jupyter sometimes asks for a token. This way, you can just jump straight into your notebooks without any interruptions. 😅
+
+
+#### Reveal the Secret of uvx 🔍 
+
+So, what’s the deal with uvx? 🤔
+
+Think of `uvx` as a super handy shortcut. When you use it, tools get installed in their own temporary, isolated environments. No mess, no fuss! 🎉
+
+But, if you’re running a tool that needs your project to be installed first—like when you're using pytest or mypy—then you’ll want to use `uv run` instead of `uvx`. It’s that simple! ✌️
+
+
+
