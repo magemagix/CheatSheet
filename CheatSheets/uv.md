@@ -59,7 +59,7 @@ And if you're curious about what Python versions you already have installed, che
 ```bash 
 uv python list --only-installed
 ```
-This is what you'll see if you've got Python 3.12 installed:
+This is what you'll see if you've got **Python 3.12** installed:
 
 <pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
 <code>
@@ -73,7 +73,7 @@ cpython-3.12.3-linux-x86_64-gnu    /usr/bin/python3 -> python3.12
 
 ### Install Python 3.14 🎉
 
-Want to try out the shiny new Python 3.14? It’s just one command away:
+Want to try out the shiny new **Python 3.14**? It’s just one command away:
 
 ```bash
 uv python install 3.14
@@ -88,13 +88,13 @@ Installed Python 3.14.0 in 4.51s
 </pre>
 
 
-Boom! Python 3.14 installed in under 5 seconds—talk about speed! ⚡
+Boom! **Python 3.14** installed in under 5 seconds—talk about speed! ⚡
 
 --- 
 
 ### Switch to the New Python Version 🔄
 
-Now that Python 3.14 is installed, let's **pin** it as your default:
+Now that **Python 3.14** is installed, let's **pin** it as your default:
 
 ```bash
 uv python pin 3.14
@@ -108,7 +108,7 @@ Updated `.python-version` from `3.12` -> `3.14`
 </pre>
 
 
-You’re now rocking Python 3.14 🎸!
+You’re now rocking **Python 3.14** 🎸!
 
 ---
 
@@ -393,3 +393,208 @@ So, to sum up:
 With this combo, you're guaranteed a portable, stable, and reproducible environment! ✨
 
 ---
+
+## Upgrade, Downgrade, and Synchronize 🔄
+
+Sometimes, you need to jump to a specific version of a package—like going back in time for **numpy**. Whether it's to fix a bug or ensure compatibility, managing versions is part of the game. Here’s how you can upgrade, downgrade, or synchronize your project’s dependencies to make it behave just the way you want! 🎮
+
+### Install a Specific Version ⬇️
+
+```bash 
+uv add "numpy<=2.1.0"
+```
+
+Now, when you peek inside your **pyproject.toml**, it will show:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[project]
+name = "project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy<=2.1.0",
+]
+</code>
+</pre>
+
+And, in the **lock file**, you’ll see the exact version that’s installed:
+
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[[package]]
+name = "numpy"
+version = "2.1.0"
+.
+.
+.
+</code>
+</pre>
+
+
+
+### Upgrade or Downgrade Without Changing Anything? 😬
+
+
+You might try these commands to upgrade numpy:
+
+```bash
+uv add "numpy" --upgrade
+uv add "numpy"
+```
+But guess what? **No change** happens here in either the **toml** or **lock** files. 😅 These commands don’t do what you expect!
+
+So, how do you upgrade? Simple!
+
+
+### How to Properly Upgrade 🆙
+
+To upgrade **numpy** from version `2.1.0` to `2.3.2`, use this command:
+
+
+```bash
+uv add "numpy>=2.3.2"
+```
+Now, check your **pyproject.toml**, and it’ll look like this:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[project]
+name = "project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.3.2",
+]
+</code>
+</pre>
+
+In your **lock file**, you’ll now see the exact version installed:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[[package]]
+name = "numpy"
+version = "2.3.4"
+.
+.
+.
+</code>
+</pre>
+
+### Downgrading? Just a Matter of Version 🎯
+
+Want to downgrade? Use the same trick! Just specify the version you need, and you’re good to go. It’s as simple as that. 😉
+
+**Upgrade** and **downgrade** (or let’s call it "**dupgrade**" for fun 😜) are straightforward. But remember: your package must have a release compatible with your Python version. Otherwise, no dice! 🙅‍♂️
+
+<br><br> 
+
+### The Magic of Synchronizing Your Project 🔄✨
+
+Let’s say you have an empty project, and you want to install numpy:
+
+```bash
+uv add "numpy>=2.1.0"
+```
+Here’s what your **pyproject.toml** will look like after installing numpy:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[project]
+name = "project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.1.0",
+]
+</code>
+</pre>
+
+Let’s say later, a newer version of **numpy** gets released. You decide to upgrade, but the **toml** file still shows the same:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+dependencies = [
+    "numpy>=2.1.0",
+]
+</code>
+</pre>
+
+And before the upgrade, **numpy** in your **lock file** was at:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[[package]]
+name = "numpy"
+version = "2.2.4"
+</code>
+</pre>
+
+If you want to upgrade **numpy** to the latest **compatible** version, simply run:
+
+```bash 
+uv sync --upgrade-package numpy
+```
+After syncing (= synchronizing), your **pyproject.toml** will stay the same (no changes here):
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[project]
+name = "project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.1.0",
+]
+</code>
+</pre>
+
+But look at that **lock file**! It reflects the exact upgraded version:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>
+[[package]]
+name = "numpy"
+version = "2.3.4"
+</code>
+</pre>
+
+
+<br><br>
+
+### Upgrade Everything at Once 🚀
+
+
+Want to upgrade all packages at once? Easy!
+
+```bash
+uv sync --upgrade
+```
+So, sync your project’s dependencies across both configuration files (**pyproject.toml** and the **lock file**).
+
+This will ensure all packages are up-to-date, but be aware that when you sync, the **lock file** will reflect the exact versions after the process. So if any changes happened, the installed versions will be updated accordingly. 🔄
+
+<br>
+<br>
+
+### Final Tip: Manual Upgrades and Downgrades 🛠️
+
+You can totally tweak the versions in your **pyproject.toml** manually—whether you’re upgrading or downgrading—but if you want to keep everything nice and consistent, the syncing commands are your best friend. 👫 Run them to make sure all your dependencies are dupgraded in one go, and your environment stays perfectly in sync! 💥🔄
+
+<br><br>
+
+And that’s it! 🎉 Whether you’re upgrading, downgrading, or just keeping everything in sync, this is your go-to guide for managing dependencies like a pro!
+
+---
+
+
