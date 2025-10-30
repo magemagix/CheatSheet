@@ -17,6 +17,16 @@ Getting started with a new project? It’s as simple as 1-2-3!
 uv init project
 ```
 
+The `uv init` command in UV doesn’t create a virtual environment by default. Instead, it helps you set up your project structure within the chosen directory 🗂️, including a `pyproject.toml` file and other important project files 🔧.
+
+But don’t worry, if you want to create a virtual environment, you can easily do that with the `uv venv` command 🐍! Just specify the Python version if you need (e.g., `uv venv --python 3.10`) and voila! 🎉 You can then activate it like any other virtual environment and get to work! 🚀
+
+
+```bash
+uv venv --python 3.12
+```
+
+
 Now, take a peek at the content of your shiny new project folder! If you have the tree command installed, go ahead and run:
 
 ```bash
@@ -752,6 +762,229 @@ So, what’s the deal with uvx? 🤔
 Think of `uvx` as a super handy shortcut. When you use it, tools get installed in their own temporary, isolated environments. No mess, no fuss! 🎉
 
 But, if you’re running a tool that needs your project to be installed first—like when you're using pytest or mypy—then you’ll want to use `uv run` instead of `uvx`. It’s that simple! ✌️
+
+
+---
+
+
+## Build Your Own Package: Let's Make Some Magic! 🪄
+
+UV makes it easy to create a python package and share it with community. 
+
+Ready to create your very own Python package and share it with the world? 🌍 Let's dive into building something useful—how about a package that computes square roots and sums of squares? We’ll call it **magic** ✨.
+
+### Step 1: Set Up the Project 🏗️
+
+To get started, we need to initialize our package. Just run this command:
+
+```bash
+uv init --lib magic
+```
+
+Once that’s done, let's take a look at the files in our new **magic** project! 📂
+
+```bash
+cd magic
+tree -aL 2
+```
+This will give you an overview of your project structure. Here’s what it should look like:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>                             
+.
+├── .git
+│   ├── branches
+│   ├── config
+│   ├── description
+│   ├── HEAD
+│   ├── hooks
+│   ├── info
+│   ├── objects
+│   └── refs
+├── .gitignore
+├── pyproject.toml
+├── .python-version
+├── README.md
+└── src
+    └── magic
+
+9 directories, 7 files
+</code>
+</pre>
+
+### Step 2: Create Your Scripts ✍️
+
+Next, let’s create the magic ✨. In our toy example, we’ll need **magic.py** and **magic_functions.py**.
+
+#### 1. magic_functions.py: The Math Behind the Magic 🧮
+
+
+In **magic_functions.py**, we'll define a class called `SimpleMath` with two main functions: 
+ * `square_root`: To compute the square root of a number or numbers in vector.
+ * `sum_of_squares`: To calculate the sum of squares of a list of numbers.
+
+Here’s the code for **magic_functions.py**:
+
+ ```python
+class SimpleMath:
+    def __init__(self):
+        pass
+    
+    def square_root(self, value):
+        """
+        Returns the square root of the given number.
+        """
+        if value < 0:
+            raise ValueError("Cannot compute the square root of a negative number.")
+        return value ** 0.5
+    
+    def sum_of_squares(self, values):
+        """
+        Returns the sum of squares of the provided list of values.
+        """
+        return sum([value ** 2 for value in values])
+```
+
+#### 2. magic.py: Bringing the Magic to Life 🔮
+
+Now, let’s create **magic.py**. This script will provide two useful functions:
+ * `compute_square_roots`: Uses **magic_functions.py** to compute the square roots.
+ * `compute_sum_of_squares`: Uses **magic_functions.py** to compute the sum of squares.
+
+ Here’s what **magic.py** looks like:
+
+```python
+from .magic_functions import SimpleMath
+
+def compute_square_roots(values):
+    """
+    Computes the square roots of a list of values
+    using the helper function from magic_functions (SimpleMath).
+    """
+    math_helper = SimpleMath()
+    return [math_helper.square_root(value) for value in values]
+
+def compute_sum_of_squares(values):
+    """
+    Computes the sum of squares of a list of values.
+    """
+    math_helper = SimpleMath()
+    return math_helper.sum_of_squares(values)
+```
+
+#### Step 3: Organize the Files 📂
+
+Now, let’s put everything in the right place. Inside the main folder of your project, **magic**, you'll also find a folder named **magic** inside the **src** folder 🗂️. This is where the real magic happens! ✨ Go ahead and place both **magic.py** and **magic_functions.py** in that folder, like this:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>                             
+.
+└── src
+    └── magic
+        ├── __init__.py
+        └── py.typed
+</code>
+</pre>
+
+now you will have the following structure:
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>                             
+.
+└── src
+    └── magic
+        ├── __init__.py
+        ├── magic_functions.py
+        ├── magic.py
+        └── py.typed
+</code>
+</pre>
+
+You should also have an `__init__.py` file inside the **magic** folder. In `__init__.py`, add the following code to expose the methods from **magic.py**:
+
+
+
+```bash
+from .magic import compute_square_roots, compute_sum_of_squares
+```
+
+This ensures that when someone imports your package, they can access the functions from **magic.py** and not directly from **magic_functions.py**. ✨
+
+
+#### Step 5: Add Dependencies (If Needed) 📦
+
+If your package needs any external dependencies, simply add them using `uv add package_name`. Don’t forget to check your **pyproject.toml** file afterward. For our **magic** package, we don’t have any external dependencies, so we’re good to go!
+
+
+
+#### Step 6: Check the pyproject.toml 🧾
+
+
+Take a moment to explore the pyproject.toml file. It should look something like this:
+
+```bash
+[project]
+name = "magic"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.9.5,<0.10.0"]
+build-backend = "uv_build"
+```
+
+Feel free to modify the name, version, and description to fit your package. ✍️ And don’t forget to fill out your README.md to make your package extra user-friendly! 📄
+
+
+#### Step 7: Build Your Package 🔨
+
+
+Now for the fun part—building the package! 🎉 Use this command:
+
+```bash 
+uv build
+```
+You should see something like this in the output:
+
+```bash
+Building source distribution (uv build backend)...
+Building wheel from source distribution (uv build backend)...
+Successfully built dist/magic-0.1.0.tar.gz
+Successfully built dist/magic-0.1.0-py3-none-any.whl
+```
+Now, check the **dist** folder for your newly created `.tar.gz` and `.whl` files. 🏆
+
+<pre style="background-color: #381d47ff; padding: 10px; border-radius: 5px;">
+<code>                             
+.
+├── dist
+│   ├── .gitignore
+│   ├── magic-0.1.0-py3-none-any.whl
+│   └── magic-0.1.0.tar.gz
+</code>
+</pre>
+
+
+#### Step 8: Install Your Package 🎉
+
+You’ve made it! Now you can install your newly created package wherever you want. Just run:
+
+```bash
+uv pip install magic-0.1.0-py3-none-any.whl
+```
+And if you’re still developing the package, you’ll want to install it in editable mode so you can work directly with the source code without rebuilding it:
+
+```bash
+pip install -e .
+```
+
+
+#### 🎉 Congrats! You Did It! 🎉
+
+You’ve just built and released your very own Python package! 🌟 Whether you’re sharing it with others or just using it for personal projects, you’ve learned the steps to create a Python package from scratch. Keep building and making magic happen! ✨
 
 
 
