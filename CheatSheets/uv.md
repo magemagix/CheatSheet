@@ -834,7 +834,7 @@ Once everything is installed, you can launch your Jupyter Notebook like a pro:
 
 
 ```bash
-jupyter notebook --ip='*' --NotebookApp.token='' --NotebookApp.password=''
+uv run jupyter notebook --ip='*' --NotebookApp.token='' --NotebookApp.password=''
 ```
 Note: I added `--NotebookApp.token=''` and `--NotebookApp.password=''` because, well, Jupyter sometimes asks for a token. This way, you can just jump straight into your notebooks without any interruptions. 😅
 
