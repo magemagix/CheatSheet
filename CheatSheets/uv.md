@@ -217,6 +217,32 @@ But wait, you can also use `pip`-style commands if you like the old ways:
 uv pip install pandas matplotlib
 ```
 
+It turns out that uv add and uv pip install aren’t quite the same—so here's the scoop! 👇
+
+ * `uv add`: This is your go-to for managing dependencies at the **project level**. 🌱 It works seamlessly with your **pyproject.toml** file, adding new packages to the [project.dependencies] section (or any other relevant section). Perfect for keeping your project’s dependencies tidy and organized!
+ * `uv pip install`: This one installs packages directly into your **target environment** (usually the active virtual environment venv). ⚙️ It **doesn't modify** `pyproject.toml` or `uv`.lock in the same way as `uv add`—it’s more of a quick installation without the deeper integration.
+
+
+This difference becomes more obvious when you need to **export your dependencies**. 📤 We’ll go over how to export them soon, but for now, here’s the key:
+
+ * If you use `pip` to install your packages, you’ll need to run:
+```bash
+uv pip freeze > requirements.txt
+```
+This will save your dependencies to a `requirements.txt` file.
+
+ * On the other hand, if you use `uv add`, you’ll want to use:
+
+```bash
+uv export --format requirements.txt --output-file requirements.txt
+```
+
+This ensures that everything is neatly exported into the right format.
+
+And don’t worry—we’ll dive into exporting dependencies in more detail a bit later on!
+
+<br><br>
+
 🌱 Want to dive into your project's dependencies? Just run this simple command:
 
 ```bash
