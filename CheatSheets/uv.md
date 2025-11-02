@@ -514,6 +514,12 @@ uv export --format requirements.txt --output-file requirements.txt
 ```
 This will generate a `requirements.txt` file that contains all your locked dependencies, ready to be shared or installed using pip.
 
+To install the dependencies, use this command:
+
+``bash
+uv add -r requirements.txt
+```
+
 #### 🚀 Why Export and Share Your Lockfile?
 
 🧑‍🤝Collaborate easily: Share your lockfile with teammates so that everyone uses the exact same versions of dependencies.
