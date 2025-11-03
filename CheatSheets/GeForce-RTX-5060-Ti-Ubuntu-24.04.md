@@ -357,3 +357,22 @@ And don’t forget to add CUDA again — the process is the same as before: inst
 If you decide to install a new version of the NVIDIA driver, make sure CUDA and cuDNN remain compatible! ⚡
 
 ---
+
+
+### 🧘 Final Thoughts
+
+Installing the RTX 5060 Ti on Ubuntu isn’t a simple driver update — it’s an **adventure**, a ***lesson in persistence***, and a **Linux initiation ritual**.
+
+But hey — it works beautifully once configured.
+
+You’ll have full CUDA support, both monitors glowing, and PyTorch crunching tensors like butter.
+
+Key takeaways:
+ * Always use `--kernel-module-type=open`.
+ * Match your CUDA and driver versions.
+ * Never trust Wayland too early. 😉
+ * Reboots are your best friend (and your worst enemy).
+
+Enjoy your RTX 5060 Ti — you’ve **earned** it. 💪
+
+And remember: **GPUs reward those who refuse to give up**. 🧙‍♂️
