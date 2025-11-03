@@ -200,3 +200,60 @@ You should see something like:
 ---
 
 
+
+### ⚙️ Step 3 — Install CUDA Toolkit 13.0
+
+Go to the [CUDA Downloads](https://developer.nvidia.com/cuda-downloads).
+
+Choose:
+
+| Option         | Value           |
+| -------------- | --------------- |
+| OS             | Linux           |
+| Architecture   | x86_64          |
+| Distribution   | Ubuntu          |
+| Version        | 24.04           |
+| Installer Type | runfile (local) |
+
+Then download and install:
+
+```bash 
+wget https://developer.download.nvidia.com/compute/cuda/13.0.2/local_installers/cuda_13.0.2_580.95.05_linux.run
+chmod +x cuda_13.0.2_580.95.05_linux.run
+sudo sh cuda_13.0.2_580.95.05_linux.run
+```
+
+When prompted the license, type `accept`, then **deselect “Driver”** since we already installed it.
+(Use the **Spacebar** to toggle options.)
+
+---
+
+### 🧭 Step 4 — Configure CUDA Environment Variables
+
+After installation, you’ll get a summary like this:
+
+```ruby
+Toolkit: Installed in /usr/local/cuda-13.0/
+Please ensure PATH and LD_LIBRARY_PATH include the following:
+  PATH=/usr/local/cuda-13.0/bin
+  LD_LIBRARY_PATH=/usr/local/cuda-13.0/lib64
+```
+
+Let’s make it permanent:
+
+```bash
+echo 'export PATH=$PATH:/usr/local/cuda-13.0/bin' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-13.0/lib64' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Just to be sure:
+
+```bash
+echo "/usr/local/cuda-13.0/lib64" | sudo tee -a /etc/ld.so.conf
+sudo ldconfig
+```
+
+---
+
+
