@@ -318,3 +318,42 @@ NVIDIA GeForce RTX 5060 Ti
 You’ve successfully tamed your RTX dragon. 🐉
 
 ---
+
+### 🧯 Trick 3 — When Ubuntu Updates Break Everything
+
+Ah yes, the “Update Monster”. 😱 
+
+You wake up, install some updates, and suddenly your 
+second monitor disappears.  
+
+Ubuntu’s update script:
+
+> “It’s called progress.” 😬
+
+When that happens — **don’t panic**. Just **purge and reinstall** your NVIDIA setup:
+
+```bash
+sudo apt-get remove --purge '^nvidia-.*'
+sudo rm /etc/X11/xorg.conf
+sudo nvidia-uninstall
+sudo apt purge nvidia-* -y
+sudo apt autoremove -y
+sudo apt autoclean -y
+sudo rm /etc/modprobe.d/blacklist-nouveau.conf
+sudo rm -rf /usr/local/cuda*
+sudo update-initramfs -k all -u
+sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
+```
+
+Then reinstall the NVIDIA driver using:
+
+```bash
+sudo sh NVIDIA-Linux-x86_64-580.95.05.run --kernel-module-type=open
+```
+Reboot.
+Your monitors will return from the dead. 🧟‍♂️
+
+And don’t forget to add CUDA again — the process is the same as before: install cuDNN and check PyTorch.
+If you decide to install a new version of the NVIDIA driver, make sure CUDA and cuDNN remain compatible! ⚡
+
+---
