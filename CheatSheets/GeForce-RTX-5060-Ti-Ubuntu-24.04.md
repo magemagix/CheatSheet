@@ -106,3 +106,97 @@ Reboot and enjoy your fresh Ubuntu 24.04 installation.
 
 ---
 
+
+
+### ⚡ Trick 2 — Installing the Right NVIDIA Driver, CUDA, and cuDNN
+
+Here’s where things get serious.
+
+Installing NVIDIA drivers for the RTX 5060 Ti **isn’t** the same as for older cards.
+
+The **traditional** (and seemingly forward) way to install NVIDIA drivers is to use Ubuntu’s repositories — simple, clean, and normally rock-solid.
+
+You’d first list all available NVIDIA drivers with:
+
+```bash 
+apt-cache search nvidia | grep -P '^nvidia-(driver-)?[0-9]+\s'
+```
+Then pick one version, say **550**, and install it like this:
+
+```bash
+sudo apt -y install nvidia-utils-550
+sudo apt -y install nvidia-driver-550
+sudo apt -y install nvidia-settings
+```
+Looks perfect, right?
+
+Yeah… not this time. 😬
+
+Unfortunately, this approach doesn’t work for the RTX 5060 Ti — the drivers in Ubuntu’s repos aren’t up to date (yet), so your shiny new GPU will just sit there, unrecognized and sad.
+
+Using Ubuntu’s default repositories? ❌ Nope.
+We’ll do it **manually** — like real Linux warriors.
+
+Before diving in, remember: your NVIDIA driver should match the CUDA version — think of them as peanut butter and jelly 🥪, they just work better together!
+
+---
+
+### 🧱 Step 1 — Download the Correct NVIDIA Driver
+
+Head to the official [NVIDIA Driver Download page](https://www.nvidia.com/en-us/drivers/). 🚀
+
+Use these parameters for manual driver search:
+| Setting          | Value                      |
+| ---------------- | -------------------------- |
+| Product Category | GeForce                    |
+| Product Series   | GeForce RTX 50 Series      |
+| Product          | NVIDIA GeForce RTX 5060 Ti |
+| OS               | Linux 64-bit               |
+
+
+At the time of writing, the latest driver was **580.95.05**.
+
+Download it, then install it:
+
+```bash
+sudo sh NVIDIA-Linux-x86_64-580.95.05.run  --kernel-module-type=open
+```
+
+This `--kernel-module-type=open` flag is **the secret sauce** 🌟 — without it, nothing works properly.
+
+During installation:
+ * Accept every warning.
+ * Choose **Continue installation**.
+ * Enable **32-bit compatibility** when asked.
+ * Allow **nvidia-xconfig** to update your **X configuration**.
+
+When complete, reboot your system:
+
+```bash
+sudo reboot
+```
+
+---
+
+### 🛠️ Step 2 — Verify Driver Installation
+Once you’re back, open a terminal and type:
+
+```bash
+nvidia-smi
+```
+
+
+You should see something like:
+
+```pgsql
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 580.95.05   Driver Version: 580.95.05   
+| NVIDIA GeForce RTX 5060 Ti                                       |
++-----------------------------------------------------------------------------+
+```
+
+🎉 Both monitors should now be working.
+
+---
+
+
