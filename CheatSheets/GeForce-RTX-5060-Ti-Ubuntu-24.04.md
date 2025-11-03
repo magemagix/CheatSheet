@@ -68,3 +68,41 @@ None of this happened with my old GTX 1080. 🙏 God bless the 1080, may its fra
 
 ---
 
+
+
+
+### 🪄 Trick 1 — Installing Ubuntu 24.04 (The Sneaky Path)
+
+After many failed attempts, I realized that the RTX 5060 Ti doesn’t like installing Ubuntu 24.04 **directly**. The trick?
+Take a **detour** via **Ubuntu 22.04**.
+
+#### 🧩 Step-by-Step:
+
+ 1. Install Ubuntu **22.04 LTS** as usual — it should detect your hardware just fine (though your GPU might still be shy 😅). One monitor will work perfectly and show your desktop..
+
+ 2. Run all updates:
+   ```bash 
+   sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
+   ```
+ 3. Once the system is stable, **upgrade** to **Ubuntu 24.04**:
+
+ ```bash
+ sudo do-release-upgrade
+ ```
+
+ 4. Before rebooting, disable **Wayland** because… Wayland is sometimes the “final boss” of NVIDIA issues.
+
+ ```bash
+ sudo nano /etc/gdm3/custom.conf
+ ```
+ Change:
+
+ ```ini
+WaylandEnable=false
+ ```
+Reboot and enjoy your fresh Ubuntu 24.04 installation.
+
+🎉 **Challenge #1 defeated!**
+
+---
+
