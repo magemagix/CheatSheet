@@ -256,4 +256,65 @@ sudo ldconfig
 
 ---
 
+### 🧩 Step 5 — Install cuDNN
 
+Go to [cuDNN Downloads](https://developer.nvidia.com/cudnn-downloads).
+
+Select:
+
+| Setting        | Value        |
+| -------------- | ------------ |
+| OS             | Linux        |
+| Architecture   | x86_64       |
+| Distribution   | Ubuntu 24.04 |
+| Installer Type | deb (local)  |
+| Configuration  | FULL         |
+
+<br>
+
+Then follow these commands as provided by the web page:
+
+```bash
+wget https://developer.download.nvidia.com/compute/cudnn/9.14.0/local_installers/cudnn-local-repo-ubuntu2404-9.14.0_1.0-1_amd64.deb
+sudo dpkg -i cudnn-local-repo-ubuntu2404-9.14.0_1.0-1_amd64.deb
+sudo cp /var/cudnn-local-repo-ubuntu2404-9.14.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cudnn9-cuda-13
+```
+
+Reboot once more for good luck 🍀:
+```bash
+sudo reboot
+```
+
+---
+
+
+### 🔥 Step 6 — Verify PyTorch + CUDA
+
+Create a virtual environment and get the pip command for installing PyTorch from its official website for CUDA 13.0 :
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+```
+Test it:
+
+```bash
+import torch
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
+```
+
+If everything went well, you should see:
+
+```yaml
+True
+NVIDIA GeForce RTX 5060 Ti
+```
+<br>
+
+🎉 **Challenge #2 complete!**
+
+You’ve successfully tamed your RTX dragon. 🐉
+
+---
