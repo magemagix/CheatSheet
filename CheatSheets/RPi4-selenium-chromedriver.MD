@@ -90,3 +90,36 @@ Python 3.13.5
 ---
 
 <br>
+
+
+## 🧰 Set the Environment (UV Magic ✨)
+
+For managing this project and its packages, I use **uv**—it's like a **magic wand** for your Python environments. 🪄 You can find all the details in its [official repository](https://github.com/astral-sh/uv), if you want to learn more. 🌱
+
+To install **uv**, just follow the instructions in the repository—easy peasy! 🍋 But don’t forget this important step: you need to add `$HOME/.local/bin` to your **PATH** so **uv** can do its magic ✨. To do this, you can either restart your **shell**, or if you’re feeling bold, just run:
+
+```bash
+source $HOME/.local/bin/env
+```
+Now you’re all set to roll with **uv**! 🏎️ Ready to zoom ahead? Let’s do this! 🚀
+
+
+As we journey through this setup, you’ll see that I’m using **uv** to manage the project environment and dependencies. 🌱 Now, **uv** is just a trusty tool in our toolbox for this adventure, but if you find yourself curious about it (because, trust me, you’ll want to know more!), don’t worry—I’ve got you covered. 📚
+
+Simply check out the **current repository** and open the **uv.md** file for a full guide. 📜 It’s like a *treasure map* 🗺️—detailed, and ready to help you unlock all the hidden secrets of **uv**!
+
+But for now, let’s keep moving forward with the main quest. 🏃‍♀️ Onward!
+
+Before we continue, let's make sure your system is fully updated and prepped with all the necessary dependencies. 🔧💻 Run the following commands to get everything in tip-top shape:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y libglib2.0-0 libnss3 libdbus-glib-1-2 libgconf-2-4 libfontconfig1 libgbm1 libu2f-udev udev
+sudo apt --fix-broken install
+sudo reboot
+```
+
+Once you’ve rebooted, you’ll be all set to continue with the next steps. 🛠️
+
+
+---
