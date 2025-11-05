@@ -82,3 +82,15 @@ So, if you’re ready to dive into automation, check out the **[Raspberry Pi 4 +
 ---
 
 
+<br><br>
+
+
+### 🌟 Don’t Forget to Star the Repo ⭐
+
+If you found these cheat sheets helpful, don’t forget to star the repo! 🌟 It’s a small way to say, "Thanks for the treasure!" and helps other adventurers find their way too. 🚀
+
+---
+
+Happy coding, and may your terminal always be bug-free! 🐞💻
+
+---
