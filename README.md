@@ -8,16 +8,16 @@ In this repository, you'll find **cheat sheets** for a variety of tools and setu
 
 ## 🗂️ Table of Contents
 
-* [**UV Package Manager Guide**](#uv-package-manager-guide)
-* [**GeForce RTX 5060 Ti 16GB on Ubuntu 24.04**](#geforce-rtx-5060-ti-16gb-on-ubuntu-2404)
-* [**Raspberry Pi 4, Selenium, and Chromedriver**](##raspberry-pi-4-selenium-and-chromedriver)
+* [UV Package Manager Guide](#-uv-package-manager-guide-)
+* [GeForce RTX 5060 Ti 16GB on Ubuntu 24.04](#-geforce-rtx-5060-ti-16gb-on-ubuntu-2404-)
+* [Raspberry Pi 4, Selenium, and Chromedriver](#-raspberry-pi-4-selenium-and-chromedriver-)
 
 
 ---
 
 <br><br><br><br><br><br>
 
-## 📦 UV Package Manager Guide 🚀
+## 📦 UV Package Manager Guide 🚀 
 
 Welcome to the **UV Cheat Sheet**! 🎉 If you're a fan of managing projects and Python versions like a *pro*, you’ve landed at the perfect spot! 😎 Whether you're a beginner or an expert, **UV** is a powerful tool to organize your environment, and I’m here to make it super easy for you! 🧑‍💻✨
 
