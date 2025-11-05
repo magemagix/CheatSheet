@@ -123,3 +123,35 @@ Once you’ve rebooted, you’ll be all set to continue with the next steps. �
 
 
 ---
+
+
+## 🍗 The Secret Sauce: Installing ChromeDriver
+
+Alright, now let’s get to the meat of this recipe: **ChromeDriver**. The steps are simple, but not without their little quirks. 🐉
+
+🔥 Install ChromeDriver:
+
+```bash
+sudo apt install chromium-driver -y
+```
+
+Now, if you try to install **Chromium**:
+
+
+```bash
+sudo apt install chromium -y
+```
+
+You’ll get something like this:
+
+```bash
+chromium is already the newest version (1:141.0.7390.122-1~deb13u1+rpt1).
+chromium set to manually installed.
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
+```
+
+Looks like you're all set with the latest version! ✨
+
+
+---
