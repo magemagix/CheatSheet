@@ -9,8 +9,8 @@ In this repository, you'll find **cheat sheets** for a variety of tools and setu
 ## 🗂️ Table of Contents
 
 * [UV Package Manager Guide](#-uv-package-manager-guide-)
-* [GeForce RTX 5060 Ti 16GB on Ubuntu 24.04](#-geforce-rtx-5060-ti-16gb-on-ubuntu-2404-)
-* [Raspberry Pi 4, Selenium, and Chromedriver](#-raspberry-pi-4-selenium-and-chromedriver-)
+* [GeForce RTX 5060 Ti 16GB on Ubuntu 24.04](#-geforce-rtx-5060-ti-16gb-on-ubuntu-2404-%EF%B8%8F)
+* [Raspberry Pi 4, Selenium, and Chromedriver](#%EF%B8%8F-raspberry-pi-4-selenium-and-chromedriver)
 
 
 ---
