@@ -155,3 +155,78 @@ Looks like you're all set with the latest version! ✨
 
 
 ---
+
+
+
+## 🌱 Create Your Project (With UV, of course)
+
+Let’s start a new project, shall we? We’ll call it `test`. 🌟
+
+```bash
+uv python pin 3.13  # We’ll use Python 3.13 for this project
+uv init test
+cd test
+```
+
+
+
+Now, check out the contents of your **pyproject.toml** file:
+
+```bash
+nano pyproject.toml
+```
+
+You should see something like this:
+
+```toml
+[project]
+name = "test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+```
+
+Now let’s add all the necessary dependencies. It’ll look like this after your edits:
+
+
+```toml
+[project]
+name = "test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "attrs==25.4.0",
+    "certifi==2025.10.5",
+    "cffi==2.0.0 ; implementation_name != 'pypy' and os_name == 'nt'",
+    "h11==0.16.0",
+    "idna==3.11",
+    "outcome==1.3.0.post0",
+    "pycparser==2.23 ; implementation_name != 'PyPy' and implementation_name != 'pypy' and os_name == 'nt'",
+    "pysocks==1.7.1",
+    "selenium==4.38.0",
+    "sniffio==1.3.1",
+    "sortedcontainers==2.4.0",
+    "trio==0.32.0",
+    "trio-websocket==0.12.2",
+    "typing-extensions==4.15.0",
+    "urllib3==2.5.0",
+    "webdriver-manager>=4.0.2",
+    "websocket-client==1.9.0",
+    "wsproto==1.2.0",
+]
+```
+
+Run this magic spell to install all dependencies:
+
+```bash
+uv sync
+```
+
+Boom! Now your environment is all ready to launch into the **web scraping universe**. 🛸
+
+
+---
