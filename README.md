@@ -57,7 +57,7 @@ Ready to unleash the full power of your **GeForce RTX 5060 Ti 16GB** on **Ubuntu
 * Installing **PyTorch** with GPU support so your tensors can run as fast as your GPU can handle! ⚡
 * **Post-update problems**: If you update Ubuntu and everything breaks (again), I’ve got a way to purge and reinstall your NVIDIA drivers to make things right. 🧹
 
-Ready to get your GPU working? Then check out the **[GeForce RTX 5060 Ti 16GB Cheat Sheet](CheatSheets/GeForce-RTX-5060-Ti-Ubuntu-24.04.md.md)** for all the details! 🎮
+Ready to get your GPU working? Then check out the **[GeForce RTX 5060 Ti 16GB Cheat Sheet](CheatSheets/GeForce-RTX-5060-Ti-Ubuntu-24.04.md)** for all the details! 🎮
 
 ---
 
@@ -77,7 +77,7 @@ This guide will walk you through the steps of installing **Selenium** and **Chro
 * How to install **Chromium** and get **Chromedriver** working.
 * A working **Python script** to scrape quotes from a website using **Selenium**!
 
-So, if you’re ready to dive into automation, check out the **[Raspberry Pi 4 + Selenium + Chromedriver Cheat Sheet](CheatSheets/CheatSheetsRPi4-selenium-chromedriver.md)**! 🌟
+So, if you’re ready to dive into automation, check out the **[Raspberry Pi 4 + Selenium + Chromedriver Cheat Sheet](CheatSheets/RPi4-selenium-chromedriver.md)**! 🌟
 
 ---
 
